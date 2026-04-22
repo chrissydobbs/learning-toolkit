@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Early Years Toolkit — Project Pack</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ── */
+:root {
+  --bg:        #FAF0E4;
+  --teal-dk:   #2C5252;
+  --teal:      #3B7A7A;
+  --teal-lt:   #EBF4F4;
+  --teal-mid:  #C0DADA;
+  --orange:    #E8794A;
+  --orange-lt: #FDF1EA;
+  --sage:      #8FA876;
+  --sage-lt:   #EEF4E8;
+  --ink:       #1E2C2C;
+  --muted:     #607070;
+  --border:    #D8CCBA;
+  --white:     #FFFFFF;
+  --red-lt:    #FFF0EE;
+  --red:       #C84040;
+}
+
+/* ── BASE ── */
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.hdr {
+  background: var(--teal-dk);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  height: 70px;
+  gap: 14px;
+}
+.owl-logo {
+  width: 42px; height: 42px;
+  background: var(--orange);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.brand-text { flex: 1; }
+.brand-name {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+.brand-name span { color: var(--orange); }
+.brand-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+}
+.hdr-right {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+  font-family: 'Nunito Sans', sans-serif;
+  white-space: nowrap;
+}
+
+/* ── NAV ── */
+.nav {
+  background: var(--teal);
+  padding: 0 48px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav button {
+  background: none; border: none;
+  border-bottom: 3px solid transparent;
+  color: rgba(255,255,255,0.65);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700; font-size: 13px;
+  padding: 12px 16px 10px;
+  cursor: pointer; white-space: nowrap;
+  transition: color .15s, border-color .15s;
+}
+.nav button:hover { color: #fff; }
+.nav button.on { color: #fff; border-bottom-color: var(--orange); }
+
+/* ── PANEL ── */
+.panel { display: none; }
+.panel.on { display: block; }
+
+/* ── PAGE WRAPPER ── */
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 44px 48px 80px;
+}
+
+/* ── SECTION LABEL ── */
+.label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+
+/* ── HEADINGS ── */
+h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 30px; font-weight: 900;
+  color: var(--teal-dk);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px; font-weight: 800;
+  color: var(--teal-dk);
+  margin-bottom: 8px;
+}
+h3 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px; font-weight: 800;
+  color: var(--teal-dk);
+  margin-bottom: 4px;
+}
+p { margin-bottom: 16px; }
+p:last-child { margin-bottom: 0; }
+
+/* ── INTRO TEXT ── */
+.intro {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 640px;
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 44px 0;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+.card-teal {
+  background: var(--teal-dk);
+  border-color: var(--teal-dk);
+  color: #fff;
+}
+.card-teal h3 { color: #fff; }
+.card-teal p  { color: rgba(255,255,255,0.85); }
+.card-teal em { color: rgba(255,255,255,0.9); font-style: italic; display: block; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.15); }
+.card-teal-lt { background: var(--teal-lt); border-color: var(--teal-mid); }
+.card-sage    { background: var(--sage-lt);  border-color: #C0D8AA; }
+.card-orange  { background: var(--orange-lt); border-color: #EFBFA0; }
+
+/* ── GRID ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.g21 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+@media (max-width: 660px) { .g2,.g3,.g21 { grid-template-columns: 1fr; } }
+
+/* ── BIG STAT ── */
+.big-stat {
+  font-family: 'Nunito', sans-serif;
+  font-size: 52px; font-weight: 900;
+  color: var(--teal-dk);
+  line-height: 1;
+  display: block;
+  margin-bottom: 8px;
+}
+.big-stat.white { color: #fff; }
+
+/* ── STAT SOURCE ── */
+.stat-src {
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-top: 8px;
+}
+.stat-src a { color: var(--teal); text-decoration: none; }
+.stat-src a:hover { text-decoration: underline; }
+
+/* ── MILESTONE BOXES ── */
+.milestone-num {
+  font-family: 'Nunito', sans-serif;
+  font-size: 42px; font-weight: 900;
+  color: var(--teal-dk);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+/* ── NOTICE ── */
+.notice {
+  padding: 14px 18px; border-radius: 8px;
+  font-size: 14px; margin-bottom: 20px;
+  line-height: 1.7;
+}
+.notice-blue   { background: var(--teal-lt);   border-left: 4px solid var(--teal); }
+.notice-orange { background: var(--orange-lt); border-left: 4px solid var(--orange); }
+.notice-red    { background: var(--red-lt);    border-left: 4px solid var(--red); }
+
+/* ── TABLE ── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl thead th {
+  background: var(--teal-dk); color: #fff;
+  padding: 10px 14px; text-align: left;
+  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.tbl thead th:first-child { border-radius: 8px 0 0 0; }
+.tbl thead th:last-child  { border-radius: 0 8px 0 0; }
+.tbl tbody td {
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  background: var(--white); vertical-align: top;
+}
+.tbl tbody tr:last-child td { border-bottom: none; }
+.tbl tbody tr:hover td { background: var(--teal-lt); }
+.tbl-link {
+  color: var(--teal); text-decoration: none; font-weight: 700;
+  font-size: 12px;
+}
+.tbl-link:hover { text-decoration: underline; }
+
+/* ── THREAT PILLS ── */
+.pill {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; font-family: 'Nunito', sans-serif;
+  padding: 2px 9px; border-radius: 20px;
+}
+.pill-red  { background: #FFEDED; color: #A02020; }
+.pill-ora  { background: var(--orange-lt); color: #A04010; }
+.pill-grn  { background: var(--sage-lt);   color: #2A5A18; }
+
+/* ── PERSONA CARDS ── */
+.persona {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.persona-hd {
+  background: var(--teal-dk);
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 14px;
+}
+.persona-avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.persona-hd-text {}
+.persona-name {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800; font-size: 17px;
+  color: #fff;
+}
+.persona-role { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 1px; }
+.persona-body { padding: 22px 24px; }
+.persona-quote {
+  font-style: italic; font-size: 14px;
+  color: var(--teal-dk);
+  border-left: 3px solid var(--orange);
+  padding-left: 12px;
+  margin-bottom: 22px;
+  line-height: 1.7;
+}
+.p-label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--orange);
+  margin: 16px 0 6px;
+}
+.persona-body p { font-size: 14px; color: var(--ink); }
+
+/* ── FLOWCHART ── */
+.flow-outer {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  overflow-x: auto;
+}
+.flow {
+  display: flex; align-items: flex-start;
+  gap: 6px; min-width: 680px;
+}
+.flow-step { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.flow-node {
+  width: 54px; height: 54px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 8px;
+  flex-shrink: 0;
+}
+.fn-ok   { background: var(--teal-lt); border: 2px solid var(--teal-mid); }
+.fn-pain { background: var(--red-lt);  border: 2px solid #F0C0C0; }
+.fn-end  { background: #FFF8EA; border: 2px solid #F0D8A0; }
+.flow-arrow {
+  font-size: 18px; color: var(--border);
+  align-self: center; padding: 0 2px;
+  margin-top: -28px; flex-shrink: 0;
+}
+.flow-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700; font-size: 11px;
+  color: var(--teal-dk); text-align: center;
+  line-height: 1.3; margin-bottom: 6px;
+}
+.flow-note {
+  font-size: 10px; text-align: center;
+  line-height: 1.35; padding: 5px 7px;
+  border-radius: 6px; max-width: 88px;
+}
+.fn-note-ok   { background: var(--teal-lt); color: var(--teal-dk); }
+.fn-note-pain { background: var(--red-lt);  color: #A02020; }
+.fn-note-end  { background: #FFF8EA;        color: #806020; }
+
+/* ── ACCORDION ── */
+.acc { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; background: var(--white); }
+.acc-btn {
+  width: 100%; text-align: left; background: none; border: none;
+  padding: 14px 18px; cursor: pointer;
+  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+  color: var(--teal-dk);
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+}
+.acc-btn:hover { background: #F7F0E6; }
+.acc-arrow { color: var(--teal); transition: transform .2s; flex-shrink: 0; font-size: 13px; }
+.acc.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { display: none; padding: 6px 18px 18px; border-top: 1px solid var(--border); background: #FDFAF6; }
+.acc.open .acc-body { display: block; }
+.acc-body p { font-size: 14px; margin-top: 12px; color: var(--muted); line-height: 1.75; }
+
+/* ── INTERACTIVE CHECKBOXES ── */
+.cl-group { margin-bottom: 24px; }
+.cl-group-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); margin-bottom: 8px;
+}
+.cl-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 16px;
+  margin-bottom: 7px; cursor: pointer;
+  transition: background .15s, border-color .15s;
+  user-select: none;
+}
+.cl-item:hover { background: var(--teal-lt); border-color: var(--teal-mid); }
+.cl-item.done { background: var(--sage-lt); border-color: #C0D8AA; }
+.cl-item.done .cl-text { text-decoration: line-through; color: var(--muted); }
+.cl-box {
+  width: 20px; height: 20px; flex-shrink: 0;
+  border-radius: 5px; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px; transition: all .15s;
+  background: var(--white);
+}
+.cl-item.done .cl-box { background: var(--sage); border-color: var(--sage); }
+.cl-check { display: none; color: white; font-size: 12px; font-weight: 700; }
+.cl-item.done .cl-check { display: block; }
+.cl-text { font-size: 14px; line-height: 1.55; flex: 1; }
+.cl-sub  { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.cl-tag  {
+  margin-left: auto; font-size: 11px; font-family: 'Nunito', sans-serif;
+  font-weight: 700; padding: 2px 9px; border-radius: 20px;
+  background: var(--teal-lt); color: var(--teal-dk); flex-shrink: 0;
+  align-self: center;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap { margin-bottom: 28px; }
+.progress-label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px; font-weight: 700; color: var(--muted);
+  margin-bottom: 6px; display: flex; justify-content: space-between;
+}
+.progress-bar { height: 8px; background: var(--border); border-radius: 8px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--sage); border-radius: 8px; width: 0%; transition: width .4s; }
+
+/* ── RECOMMENDATIONS (Open Questions) ── */
+.rec-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; margin-bottom: 8px;
+  overflow: hidden;
+}
+.rec-head {
+  padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px;
+  cursor: pointer;
+}
+.rec-head:hover { background: #F7F0E6; }
+.rec-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--orange); color: white;
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.rec-q { font-size: 14px; font-weight: 600; color: var(--ink); flex: 1; line-height: 1.55; }
+.rec-arrow { color: var(--teal); font-size: 13px; flex-shrink: 0; transition: transform .2s; margin-top: 3px; }
+.rec-item.open .rec-arrow { transform: rotate(180deg); }
+.rec-body { display: none; padding: 0 16px 16px 50px; font-size: 14px; color: var(--muted); line-height: 1.75; }
+.rec-item.open .rec-body { display: block; }
+.rec-ans { font-size: 13px; color: var(--teal-dk); font-weight: 600; margin-top: 10px; padding: 10px 14px; background: var(--teal-lt); border-radius: 6px; line-height: 1.6; }
+
+/* ── OPTION CARDS ── */
+.option {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; margin-bottom: 16px;
+}
+.option-hd {
+  padding: 16px 20px; display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.option-letter {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 16px;
+  color: white; flex-shrink: 0;
+}
+.option-title {
+  font-family: 'Nunito', sans-serif; font-weight: 800;
+  font-size: 16px; color: var(--teal-dk);
+}
+.option-body { padding: 18px 20px; font-size: 14px; }
+.option-body p { color: var(--ink); margin-bottom: 12px; }
+.option-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+@media (max-width: 580px) { .option-cols { grid-template-columns: 1fr; } }
+.option-col { background: var(--bg); border-radius: 8px; padding: 12px 14px; }
+.option-col h4 { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 12px; color: var(--teal-dk); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+.option-col li { margin-left: 14px; margin-bottom: 5px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.option-best { font-size: 11px; font-family: 'Nunito', sans-serif; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: var(--sage-lt); color: #2A5A18; margin-left: auto; flex-shrink: 0; }
+
+/* ── UTILITY ── */
+.mt12 { margin-top: 12px; }
+.mt20 { margin-top: 20px; }
+.mt28 { margin-top: 28px; }
+.mb8  { margin-bottom: 8px; }
+.mb16 { margin-bottom: 16px; }
+.mb20 { margin-bottom: 20px; }
+.tl-box { background: var(--teal-lt); border-radius: 8px; padding: 6px 10px; font-size: 12px; color: var(--teal-dk); font-weight: 600; display: inline-block; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="hdr">
+  <div class="owl-logo">🦉</div>
+  <div class="brand-text">
+    <div class="brand-name">THE EARLY YEARS <span>TOOLKIT</span></div>
+    <div class="brand-sub">Clare &nbsp;·&nbsp; Brisbane, AU &nbsp;·&nbsp; Founded 2026</div>
+  </div>
+  <div class="hdr-right">Project Pack &nbsp;·&nbsp; April 2026</div>
+</header>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="nav">
+  <button class="on" onclick="go('idea',this)">The Idea</button>
+  <button onclick="go('problem',this)">The Problem</button>
+  <button onclick="go('audience',this)">Who It's For</button>
+  <button onclick="go('market',this)">The Market</button>
+  <button onclick="go('competitors',this)">Competitors</button>
+  <button onclick="go('options',this)">Options</button>
+  <button onclick="go('validation',this)">Validation</button>
+  <button onclick="go('questions',this)">Decisions</button>
+  <button onclick="go('launch',this)">Launch Plan</button>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     THE IDEA
+════════════════════════════════════════ -->
+<div class="panel on" id="idea">
+<div class="page">
+
+  <div class="label">The Brief</div>
+  <h1>Planning, made gentle.</h1>
+  <p class="intro">A growing library of beautiful, educator-made templates, built for Australian early years settings. Ready to print, plan, display, and observe. Made by someone who has actually used them in a classroom.</p>
+
+  <div class="g2 mb16">
+    <div class="card card-teal">
+      <h3>The problem</h3>
+      <p>The biggest stress point in early years isn't behaviour or nappy changes. It's the planning. Educators spend hours every week trying to create programming that is beautiful, meaningful, and linked to the EYLF. Most do it alone, on their own time, with a blank Word doc and no system.</p>
+      <em>"One of the biggest stress points in early years isn't behaviour or nappies. It's the planning. And no one talks about it."</em>
+    </div>
+    <div class="card">
+      <h3>The solution</h3>
+      <p>A subscription library of ready-to-use planning templates, designed specifically for the Australian early years context. Topic calendars, activity planners, development charts, room display labels, reflective journals, observation records, and weekly routines. New templates every month.</p>
+      <p>Beautiful enough to be proud of. Practical enough to actually use every week.</p>
+    </div>
+  </div>
+
+  <div class="g3 mb20">
+    <div class="card card-teal-lt">
+      <h3>Why Clare</h3>
+      <p style="font-size:14px; line-height:1.65;">20 years in early years classrooms, UK to Brisbane in September 2025. Three businesses run successfully. These templates were built in the classroom, not designed from the outside in.</p>
+    </div>
+    <div class="card">
+      <h3>Who it's for</h3>
+      <p style="font-size:14px; line-height:1.65;">Family daycare educators and room leaders in Australian childcare centres. The educator doing the planning, every week, on their own time. And the directors who want consistency across their whole team.</p>
+    </div>
+    <div class="card card-sage">
+      <h3>What's different</h3>
+      <p style="font-size:14px; line-height:1.65;">EYLF v2.0 and NQF-aligned by design. Made to look beautiful on a display wall, not just functional on paper. For educators, by an educator. Parents notice the difference.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="label">What Success Looks Like</div>
+  <h2>Three milestones</h2>
+  <div class="g3 mt12">
+    <div class="card">
+      <div class="milestone-num">July</div>
+      <h3>Soft launch</h3>
+      <p style="font-size:14px; line-height:1.65;">First template pack live. Founding member pricing. 20 paying subscribers. That's the only signal that matters at this stage.</p>
+    </div>
+    <div class="card card-teal-lt">
+      <div class="milestone-num">H2 '26</div>
+      <h3>Subscription platform</h3>
+      <p style="font-size:14px; line-height:1.65;">Proper members area with a growing content library, community, and tiered pricing for individuals and centre teams.</p>
+    </div>
+    <div class="card">
+      <div class="milestone-num" style="color:var(--teal);">'27</div>
+      <h3>National reach</h3>
+      <p style="font-size:14px; line-height:1.65;">Known across Australia as the go-to planning resource for early years educators. Partnership with Family Day Care Australia. Expanding into centre team plans.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     THE PROBLEM
+════════════════════════════════════════ -->
+<div class="panel" id="problem">
+<div class="page">
+
+  <div class="label">The Problem</div>
+  <h1>Planning is the hidden workload in early years</h1>
+  <p class="intro">Every week, Australian early years educators sit down to plan activities, programming, and displays. It's not optional. It's required under the National Quality Standard. And for most educators, it's the hardest part of the job.</p>
+
+  <div class="g3 mb16">
+    <div class="card card-teal">
+      <span class="big-stat white">3-5 hrs</span>
+      <p style="font-size:14px; color:rgba(255,255,255,0.85);">Spent on planning and documentation every week, per educator. Most of it happens outside paid hours, in evenings and on weekends.</p>
+      <span class="stat-src" style="color:rgba(255,255,255,0.45);">Source: <a href="https://www.acecqa.gov.au/" target="_blank" style="color:rgba(255,255,255,0.6);">ACECQA sector research</a></span>
+    </div>
+    <div class="card">
+      <span class="big-stat">30%</span>
+      <p style="font-size:14px;">Of educators leave the sector every year. Workload and paperwork burden is the number one reason cited.</p>
+      <span class="stat-src">Source: <a href="https://www.acecqa.gov.au/resources/research" target="_blank">ACECQA 2024</a></span>
+    </div>
+    <div class="card card-teal-lt">
+      <span class="big-stat">18,000</span>
+      <p style="font-size:14px;">Family daycare educators across Australia. Every one of them plans alone, at home, with no team to share the load.</p>
+      <span class="stat-src">Source: <a href="https://www.familydaycare.com.au/" target="_blank">Family Day Care Australia, 2024</a></span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="label">Current State</div>
+  <h2>What a planning week looks like right now</h2>
+
+  <div class="flow-outer">
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-node fn-pain">😩</div>
+        <div class="flow-title">Sunday night: "What's the plan?"</div>
+        <div class="flow-note fn-note-pain">No system. No starting point. Just a blank page.</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-step">
+        <div class="flow-node fn-pain">📱</div>
+        <div class="flow-title">Browse Pinterest for ideas</div>
+        <div class="flow-note fn-note-pain">45 minutes lost. Nothing quite fits the age group or the EYLF.</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-step">
+        <div class="flow-node fn-pain">📋</div>
+        <div class="flow-title">Try to write it up</div>
+        <div class="flow-note fn-note-pain">Blank Word doc, Arial font. Ugly but functional. Sort of.</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-step">
+        <div class="flow-node fn-pain">🔍</div>
+        <div class="flow-title">Link it to EYLF</div>
+        <div class="flow-note fn-note-pain">Which outcomes? How many? Best guess and hope for the best.</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-step">
+        <div class="flow-node fn-pain">🖨️</div>
+        <div class="flow-title">Print and display</div>
+        <div class="flow-note fn-note-pain">Nothing like the inspiration online. Apologetic about how it looks.</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-step">
+        <div class="flow-node fn-end">🔁</div>
+        <div class="flow-title">Friday: do it all again</div>
+        <div class="flow-note fn-note-end">Same process. Same dread. Same result.</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--muted); text-align:center; margin-top:18px;">
+      <span style="color:#A02020; font-weight:700;">Red</span> = pain point &nbsp;·&nbsp;
+      <span style="color:#806020; font-weight:700;">Amber</span> = done but not happy about it &nbsp;·&nbsp;
+      This repeats every single week
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="label">Why Existing Options Fall Short</div>
+  <h2>What's out there right now</h2>
+  <div class="g2 mt12">
+    <div class="card">
+      <h3>Generic templates (Etsy, Teachers Pay Teachers)</h3>
+      <p style="font-size:14px; line-height:1.75;">Plenty of templates exist online. The problem is they're made for the US or UK curriculum, use the wrong terminology, and look the same as everyone else's. They don't reflect EYLF v2.0 or the NQF. And if the framework changes, you're stuck with outdated files.</p>
+    </div>
+    <div class="card card-orange">
+      <h3>AI tools (Mana, ChatGPT)</h3>
+      <p style="font-size:14px; line-height:1.75;">AI tools like Mana are excellent at writing learning stories and observation narratives from voice notes. That's a genuinely different problem. They don't help with programming, weekly planning, room displays, or activity calendars. They're a complement to planning templates, not a replacement.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     WHO IT'S FOR
+════════════════════════════════════════ -->
+<div class="panel" id="audience">
+<div class="page">
+
+  <div class="label">Who We're Building For</div>
+  <h1>The people who plan every week</h1>
+  <p class="intro">Every decision about what to build should pass one test: does this make their planning easier? These aren't made-up profiles. They're the people who will open this product on a Sunday evening and decide whether it's worth keeping.</p>
+
+  <div class="g2 mt20">
+
+    <div class="persona">
+      <div class="persona-hd">
+        <div class="persona-avatar" style="background:var(--orange);">👩</div>
+        <div class="persona-hd-text">
+          <div class="persona-name">Sarah</div>
+          <div class="persona-role">Family Daycare Educator &nbsp;·&nbsp; Brisbane &nbsp;·&nbsp; 8 years in sector</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-quote">"I love what I do. But I spend hours every week trying to make my planning look good enough to display. I know what I want it to look like. I just can't make it happen with what I've got."</div>
+        <div class="p-label">Her situation</div>
+        <p>Certificate III qualified. Home-based service caring for 5 children. Does all her planning alone, in her own time, with no director or colleague to check her work against.</p>
+        <div class="p-label">Her planning problem</div>
+        <p>Spends Sunday evenings creating weekly plans from scratch. Uses a mix of downloaded templates, Word docs, and Canva that don't match each other. Her NQS assessor last visit commented that her documentation looked "inconsistent." She was mortified.</p>
+        <div class="p-label">What she needs from this product</div>
+        <p>A complete, cohesive planning system. Templates that match. Something she can open, fill in, and feel proud to print and display. EYLF-linked and ready to go.</p>
+        <div class="p-label">How she'll find it</div>
+        <p>Facebook groups for family daycare educators. Instagram (#eylf, #familydaycare). Word of mouth from another educator in her coordination unit.</p>
+      </div>
+    </div>
+
+    <div class="persona">
+      <div class="persona-hd">
+        <div class="persona-avatar" style="background:var(--teal);">👩‍🏫</div>
+        <div class="persona-hd-text">
+          <div class="persona-name">Jade</div>
+          <div class="persona-role">Room Leader &nbsp;·&nbsp; Melbourne LDC &nbsp;·&nbsp; Completing Diploma</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-quote">"Our centre has templates but they're from about 2016 and they're really hard to use. I end up remaking them in Canva every term. There has to be a better way."</div>
+        <div class="p-label">Her situation</div>
+        <p>Room leader in the 3-5 room at a small community centre. Responsible for weekly planning, room displays, and programming. Does most of it in her own time because there's no protected time during the day.</p>
+        <div class="p-label">Her planning problem</div>
+        <p>The centre's existing templates are outdated and don't match EYLF v2.0. She recreates them herself each time, which takes hours. She wants her room to look warm and professional but doesn't have the time or design skills to make that happen from scratch.</p>
+        <div class="p-label">What she needs from this product</div>
+        <p>Consistent, beautiful templates she can use across all her room documentation. Something that links to EYLF outcomes without her having to check every single one herself. Print-ready. Editable.</p>
+        <div class="p-label">How she'll find it</div>
+        <p>Instagram. Early childhood educator Facebook groups. Recommended by a colleague or through her Diploma training provider.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="label">Team Buyers</div>
+  <h2 class="mb8">The director buying for her whole team</h2>
+  <div class="card card-teal-lt">
+    <div class="g2" style="gap:22px;">
+      <div>
+        <h3>Michelle, Centre Director</h3>
+        <p style="font-size:14px; line-height:1.75;">Manages a small independent centre. Documentation quality varies across rooms. Before each assessment visit, she spends a week going through everyone's planning files and trying to bring them up to standard. Staff turnover means she's constantly starting that process again with new people.</p>
+      </div>
+      <div>
+        <h3>What she needs</h3>
+        <p style="font-size:14px; line-height:1.75;">One consistent planning system her whole team uses. Templates that look the same across every room. Something she can hand to a new educator on day one and have them up and running immediately. A team subscription that makes sense at $15 to $30 per educator per month would be a straightforward expense to justify.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     THE MARKET
+════════════════════════════════════════ -->
+<div class="panel" id="market">
+<div class="page">
+
+  <div class="label">The Market</div>
+  <h1>Who's out there and how to reach them</h1>
+  <p class="intro">Australia's early childhood sector is large, heavily regulated, and in the middle of a workforce shortage. The demand for better planning resources is real. The question is whether this product can reach enough of that market to be a viable business.</p>
+
+  <div class="g2 mb16">
+    <div class="card card-teal">
+      <h3 style="color:#fff; margin-bottom:12px;">How big is the market?</h3>
+      <p style="font-size:14px; color:rgba(255,255,255,0.85);">18,000 family daycare educators across Australia, plus approximately 3,000 to 5,000 educators in small and independent centres whose employers won't pay for an enterprise platform. Total addressable market: somewhere between 21,000 and 23,000 individuals.</p>
+      <div class="tl-box" style="background:rgba(255,255,255,0.15); color:#fff; margin-top:12px;">Realistic capture at 5-10%: 1,000 to 2,000 subscribers</div>
+      <span class="stat-src" style="color:rgba(255,255,255,0.45);">Source: <a href="https://www.familydaycare.com.au/" target="_blank" style="color:rgba(255,255,255,0.6);">FDCA 2024</a>, ACECQA ECEC Snapshot</span>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:12px;">What does that mean in revenue?</h3>
+      <p style="font-size:14px; line-height:1.75;">1,000 subscribers at $20 per month is $20,000 per month in recurring revenue. At $25 per month, it's $25,000. That's a viable small business, but getting to 1,000 subscribers takes real, consistent effort over 12 to 24 months.</p>
+      <p style="font-size:14px; line-height:1.75;">Break-even point is likely somewhere around 400 to 600 subscribers depending on costs.</p>
+      <div class="tl-box">Starting target: 20 paying subscribers by 1 July 2026</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="label">Things Worth Knowing</div>
+
+  <div class="acc open" onclick="tog(this)">
+    <button class="acc-btn">Where family daycare educators are online <span class="acc-arrow">&#9660;</span></button>
+    <div class="acc-body">
+      <p>The best free distribution channels are Facebook groups. "Family Day Care Australia," "Family Day Care Educators Australia," and the state-based groups (NSW, VIC, QLD) are where this audience is most active and most likely to share resources with each other.</p>
+      <p>Instagram works well for visual content, which planning templates are. Hashtags like #eylf, #familydaycare, and #earlychildhoodaustralia get consistent engagement from the right people.</p>
+      <p>Family Day Care Australia (FDCA) represents all 18,000 educators nationally. A partnership or endorsement from them would be worth more than months of paid advertising. Worth approaching well before launch.</p>
+    </div>
+  </div>
+
+  <div class="acc" onclick="tog(this)">
+    <button class="acc-btn">How often the EYLF actually changes <span class="acc-arrow">&#9660;</span></button>
+    <div class="acc-body">
+      <p>EYLF v1.0 came out in 2009. v2.0 came out in 2022. That's 13 years between major updates. The NQS has minor revisions every few years, but no overhaul. "Always updated when regulations change" is a fair thing to say, but in practice major changes happen roughly once a decade.</p>
+      <p>This matters for subscription retention. "Up to date with the EYLF" is a legitimate reason to subscribe, but it's not a reason to stay subscribed year after year. The real retention argument is new monthly content and a consistent system educators rely on.</p>
+    </div>
+  </div>
+
+  <div class="acc" onclick="tog(this)">
+    <button class="acc-btn">The download-and-cancel risk <span class="acc-arrow">&#9660;</span></button>
+    <div class="acc-body">
+      <p>The biggest risk with a template library is that someone subscribes, downloads everything in month one, then cancels. Estimated first-month churn for template-heavy services is 30 to 40%. This has to be planned against from the start.</p>
+      <p>The best way to reduce it is to release content progressively, so month one subscribers don't have access to everything at once. Seasonal content helps too, since Term 3 templates are only relevant in Term 3. Monthly new releases give people a reason to stay.</p>
+    </div>
+  </div>
+
+  <div class="acc" onclick="tog(this)">
+    <button class="acc-btn">Paper planning tools are still selling strongly <span class="acc-arrow">&#9660;</span></button>
+    <div class="acc-body">
+      <p>Butler Diaries ships more than 35,000 physical EYLF and NQS-aligned programming diaries every year, with educators regularly crediting them with helping achieve Exceeding ratings. This shows that digital tools haven't fully solved the planning problem. Educators trust something they can hold and write in during an assessment visit.</p>
+      <p>This is actually good news for a digital planning template product. The demand for well-designed planning resources is proven and strong. The opportunity is to offer the same quality with the flexibility of digital files.</p>
+      <span class="stat-src">Source: <a href="https://butlerdiaries.com/" target="_blank">Butler Diaries website</a></span>
+    </div>
+  </div>
+
+  <div class="acc" onclick="tog(this)">
+    <button class="acc-btn">Cost to acquire a subscriber <span class="acc-arrow">&#9660;</span></button>
+    <div class="acc-body">
+      <p>Organic growth through Facebook groups and Instagram costs essentially nothing but takes 12 to 24 months to gain real traction. Paid Facebook ads targeting family daycare educators in Australia cost roughly $50 to $150 per subscriber acquired. A partnership with FDCA could bring that cost down to $20 to $50 per subscriber.</p>
+      <p>At a $20 per month subscription, a $100 acquisition cost means you need 6 months of retention to break even on that subscriber. Retention strategy is as important as the marketing strategy.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     COMPETITORS
+════════════════════════════════════════ -->
+<div class="panel" id="competitors">
+<div class="page">
+
+  <div class="label">Competitive Landscape</div>
+  <h1>Who's already selling to this audience</h1>
+  <p class="intro">There are two direct competitors, one indirect competitor worth watching, and a set of one-off template sellers who aren't really competitors at all. Understanding the difference matters before building anything.</p>
+
+  <table class="tbl mb20">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>What they sell</th>
+        <th>Estimated pricing</th>
+        <th>Scale</th>
+        <th>Threat level</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Aussie Childcare Network</strong><br><span style="font-size:12px; color:var(--muted);">Est. 2009</span></td>
+        <td>Template library, articles, printables, forum, mobile app. Multiple subscription tiers including lifetime access.</td>
+        <td>Hidden (subscribe to find out)</td>
+        <td><strong>60,000+ users</strong></td>
+        <td><span class="pill pill-red">Direct competitor</span></td>
+        <td><a href="https://aussiechildcarenetwork.com.au/" target="_blank" class="tbl-link">Visit ↗</a></td>
+      </tr>
+      <tr>
+        <td><strong>Starskills</strong><br><span style="font-size:12px; color:var(--muted);">Est. 2017</span></td>
+        <td>EYLF resource bundles, Canva-editable templates, step-by-step EYLF training course. Specifically targets family daycare educators.</td>
+        <td>Hidden (subscribe to find out)</td>
+        <td>Unknown</td>
+        <td><span class="pill pill-red">Direct competitor</span></td>
+        <td><a href="https://www.starskills.com.au/" target="_blank" class="tbl-link">Visit ↗</a></td>
+      </tr>
+      <tr>
+        <td><strong>Butler Diaries</strong></td>
+        <td>Physical EYLF and NQS-aligned programming diaries. Sold annually. Paper-based but very well-regarded by educators.</td>
+        <td>~$40 to $80 per diary</td>
+        <td>35,000+ orders/year</td>
+        <td><span class="pill pill-ora">Worth watching</span></td>
+        <td><a href="https://butlerdiaries.com/" target="_blank" class="tbl-link">Visit ↗</a></td>
+      </tr>
+      <tr>
+        <td><strong>Etsy / Teachers Pay Teachers</strong></td>
+        <td>Individual templates and packs from independent sellers. No ongoing updates. No Australian context guaranteed.</td>
+        <td>$5 to $25 per pack, one-off</td>
+        <td>Thousands of products</td>
+        <td><span class="pill pill-grn">Low (different model)</span></td>
+        <td><a href="https://www.etsy.com/au/" target="_blank" class="tbl-link">Etsy ↗</a></td>
+      </tr>
+      <tr>
+        <td><strong>Mana (AI tool)</strong></td>
+        <td>Writes complete EYLF-linked learning stories from voice notes in under a minute. Helps with observations and documentation, not planning templates.</td>
+        <td>Free tier + paid plans</td>
+        <td>Thousands of services</td>
+        <td><span class="pill pill-grn">Complementary</span></td>
+        <td><a href="https://www.makemana.com/" target="_blank" class="tbl-link">Visit ↗</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <div class="label">Feature Comparison</div>
+  <h2 class="mb8">Where do the gaps sit?</h2>
+  <p style="color:var(--muted); font-size:14px; margin-bottom:18px; line-height:1.75;">This table looks at features specifically relevant to planning templates. Green tick = clearly offered. Orange question mark = unclear or partial. Red cross = not offered. The last column is what Clare is proposing.</p>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Aussie CN</th>
+        <th>Starskills</th>
+        <th>Butler</th>
+        <th>Etsy</th>
+        <th style="color:var(--orange);">The Toolkit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Planning templates (weekly plans, topic calendars)</td>
+        <td>✅ Some</td>
+        <td>✅ Yes</td>
+        <td>✅ Physical</td>
+        <td>✅ Varies</td>
+        <td>✅ Core focus</td>
+      </tr>
+      <tr>
+        <td>EYLF v2.0 aligned</td>
+        <td>✅ Yes</td>
+        <td>✅ Yes</td>
+        <td>✅ Yes</td>
+        <td>⚡ Sometimes</td>
+        <td>✅ By design</td>
+      </tr>
+      <tr>
+        <td>Australian context</td>
+        <td>✅ Yes</td>
+        <td>✅ Yes</td>
+        <td>✅ Yes</td>
+        <td>⚡ Not always</td>
+        <td>✅ By design</td>
+      </tr>
+      <tr>
+        <td>Print-ready, beautiful design</td>
+        <td>⚡ Functional</td>
+        <td>⚡ Mixed</td>
+        <td>✅ Yes</td>
+        <td>⚡ Varies</td>
+        <td>✅ Core focus</td>
+      </tr>
+      <tr>
+        <td>Digital and editable (Canva)</td>
+        <td>❌ No</td>
+        <td>✅ Yes</td>
+        <td>❌ No</td>
+        <td>⚡ Some</td>
+        <td>✅ Proposed</td>
+      </tr>
+      <tr>
+        <td>New content every month</td>
+        <td>✅ Yes</td>
+        <td>⚡ Unclear</td>
+        <td>❌ Annual</td>
+        <td>❌ One-off</td>
+        <td>✅ Monthly packs</td>
+      </tr>
+      <tr>
+        <td>Pricing you can see upfront</td>
+        <td>❌ Hidden</td>
+        <td>❌ Hidden</td>
+        <td>✅ Yes</td>
+        <td>✅ Yes</td>
+        <td>✅ Proposed</td>
+      </tr>
+      <tr>
+        <td>Family daycare specific</td>
+        <td>⚡ General</td>
+        <td>✅ Yes</td>
+        <td>✅ Yes</td>
+        <td>⚡ General</td>
+        <td>✅ Proposed</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="notice notice-blue mt20">
+    Before building anything, subscribe to Aussie Childcare Network and Starskills for one month each. Look at exactly what templates they offer, how good the design is, and what's missing. That gap is where this product needs to live.
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     OPTIONS
+════════════════════════════════════════ -->
+<div class="panel" id="options">
+<div class="page">
+
+  <div class="label">Options</div>
+  <h1>Three ways this could go</h1>
+  <p class="intro">Option A is the original idea. Start there. Options B and C are either alternative directions if validation doesn't support Option A, or things to consider running alongside it. The validation tests (next tab) will help decide.</p>
+
+  <div class="option">
+    <div class="option-hd">
+      <div class="option-letter" style="background:var(--teal);">A</div>
+      <div>
+        <div class="option-title">Planning template library subscription</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:2px;">A growing library of beautiful, EYLF-aligned planning templates. New packs every month. $15 to $25 per month.</div>
+      </div>
+      <span class="option-best">Clare's original idea</span>
+    </div>
+    <div class="option-body">
+      <p>This is the core concept. A subscription library built for Australian early years educators, with new template packs released each month. Topic calendars, activity planners, weekly routines, development charts, room display labels, observation records, reflective journals. Beautiful, print-ready, and linked to EYLF v2.0.</p>
+      <p>Start lean. A simple download page and an email list. No platform needed until it's proven. The first three months are about testing whether people pay and whether they come back for month two.</p>
+      <p><strong>Pricing range:</strong> $15 to $25 per month for individuals. $50 to $100 per month for centre team plans (3 to 5 educators). Annual pricing option to reduce churn.</p>
+      <div class="option-cols">
+        <div class="option-col">
+          <h4>What's working in this direction</h4>
+          <ul>
+            <li>Proven demand (Butler Diaries sells 35,000 physical diaries a year)</li>
+            <li>Clare's classroom experience is the genuine differentiator</li>
+            <li>Low cost to start, no tech required</li>
+            <li>Can be built progressively while earning</li>
+          </ul>
+        </div>
+        <div class="option-col">
+          <h4>What needs solving</h4>
+          <ul>
+            <li>Aussie Childcare Network has a 15-year head start and 60,000 users</li>
+            <li>Download-and-cancel churn risk is high for template products</li>
+            <li>Monthly content production takes real time to maintain</li>
+            <li>Design quality has to be genuinely better to stand out</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option">
+    <div class="option-hd">
+      <div class="option-letter" style="background:var(--orange);">B</div>
+      <div>
+        <div class="option-title">Assessment prep consulting</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:2px;">Paid engagements helping centres prepare for NQS assessment and rating visits.</div>
+      </div>
+    </div>
+    <div class="option-body">
+      <p>Centres preparing for NQS assessment already pay $5,000 to $10,000 for consultants. Nobody currently positions specifically as an "assessment prep" specialist with the combination of planning documentation expertise and classroom experience that Clare has.</p>
+      <p>This isn't instead of Option A. It's a way to generate cash flow while Option A is being validated and built. Each consulting engagement also builds reputation and testimonials in exactly the target market.</p>
+      <div class="option-cols">
+        <div class="option-col">
+          <h4>Strengths</h4>
+          <ul>
+            <li>Immediate income potential</li>
+            <li>Builds trust and reputation in the sector</li>
+            <li>No platform or tech needed to start</li>
+            <li>Generates real insight into what centres need</li>
+          </ul>
+        </div>
+        <div class="option-col">
+          <h4>Limitations</h4>
+          <ul>
+            <li>Trades hours for dollars, doesn't scale easily</li>
+            <li>Requires sales conversations and client management</li>
+            <li>Not a path to national reach on its own</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option">
+    <div class="option-hd">
+      <div class="option-letter" style="background:var(--sage);">C</div>
+      <div>
+        <div class="option-title">Templates plus monthly live sessions</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:2px;">Option A's template library, plus a monthly live Q&amp;A or planning workshop. $25 to $35 per month.</div>
+      </div>
+    </div>
+    <div class="option-body">
+      <p>The biggest risk with a template subscription is that people download everything in month one and cancel. Adding a live monthly session, even just 30 minutes, solves that problem. You can't download a live session. It creates a reason to stay beyond the templates themselves.</p>
+      <p>This would be Option A evolved. Start with A to prove the concept, then add the live component once there's a subscriber base to justify it. A monthly "planning session" where Clare shows educators how to use the new templates and answers questions live would be genuinely different from anything a competitor currently offers.</p>
+      <div class="option-cols">
+        <div class="option-col">
+          <h4>Strengths</h4>
+          <ul>
+            <li>Directly addresses the download-and-cancel problem</li>
+            <li>Creates community and personal connection</li>
+            <li>Justifies a higher price point</li>
+            <li>Clare's classroom experience shines in a live format</li>
+          </ul>
+        </div>
+        <div class="option-col">
+          <h4>Things to consider</h4>
+          <ul>
+            <li>More time commitment for Clare each month</li>
+            <li>Needs a subscriber base large enough to make live sessions worthwhile</li>
+            <li>Scheduling across time zones requires thought</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     VALIDATION
+════════════════════════════════════════ -->
+<div class="panel" id="validation">
+<div class="page">
+
+  <div class="label">Before You Build Anything</div>
+  <h1>Five tests to run first</h1>
+  <p class="intro">Four weeks. Under $500 total. These tests will tell you whether there's real demand for this product, whether the pricing is right, and whether it's genuinely different enough from what already exists. Tick each one off as it's done.</p>
+
+  <div class="progress-wrap" id="val-progress">
+    <div class="progress-label">
+      <span>Validation items completed</span>
+      <span id="val-count">0 of 14</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="val-fill"></div></div>
+  </div>
+
+  <!-- Test 1 -->
+  <div class="card mb8" style="padding:0; overflow:hidden;">
+    <div style="background:var(--bg); padding:14px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);color:white;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+      <div style="flex:1;">
+        <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:var(--teal-dk);">Ask family daycare educators about their planning in Facebook groups</div>
+      </div>
+      <span style="font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;">Week 1 &nbsp;·&nbsp; Free</span>
+    </div>
+    <div style="padding:16px 20px;">
+      <p style="font-size:14px; margin-bottom:14px; line-height:1.75;">Post in three family daycare Facebook groups: "Family daycare educators, how do you plan your weekly activities? How long does it take? What are you using for templates right now?" Don't pitch anything. Just listen to what they say.</p>
+      <div style="font-size:12px;font-family:'Nunito',sans-serif;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">What you're looking for</div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">50+ responses from real educators<div class="cl-sub">Fewer than 20 responses means weak demand signal. Don't proceed.</div></div></div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">Frustrations that existing templates don't solve<div class="cl-sub">Especially around design quality, Australian context, or EYLF alignment.</div></div></div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">Interest in a subscription over buying one-off templates</div></div>
+    </div>
+  </div>
+
+  <!-- Test 2 -->
+  <div class="card mb8" style="padding:0; overflow:hidden;">
+    <div style="background:var(--bg); padding:14px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);color:white;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+      <div style="flex:1;">
+        <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:var(--teal-dk);">Subscribe to both direct competitors for a month</div>
+      </div>
+      <span style="font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;">Week 1 &nbsp;·&nbsp; ~$50</span>
+    </div>
+    <div style="padding:16px 20px;">
+      <p style="font-size:14px; margin-bottom:14px; line-height:1.75;">Subscribe to Aussie Childcare Network and Starskills. Download and look at every planning template they offer. Note the design quality, the EYLF alignment, what's missing. This is essential research before building anything.</p>
+      <div style="font-size:12px;font-family:'Nunito',sans-serif;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">What you're looking for</div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">Gaps in design quality, coverage, or specific template types<div class="cl-sub">If their templates are genuinely excellent, the differentiation argument becomes harder.</div></div></div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">The actual pricing (hidden until you subscribe)</div></div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">What makes their templates worse than what Clare could produce<div class="cl-sub">Be honest. If they're already very good, the product strategy needs to shift.</div></div></div>
+    </div>
+  </div>
+
+  <!-- Test 3 -->
+  <div class="card mb8" style="padding:0; overflow:hidden;">
+    <div style="background:var(--bg); padding:14px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);color:white;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+      <div style="flex:1;">
+        <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:var(--teal-dk);">Test a landing page with real educators</div>
+      </div>
+      <span style="font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;">Weeks 2-3 &nbsp;·&nbsp; ~$200</span>
+    </div>
+    <div style="padding:16px 20px;">
+      <p style="font-size:14px; margin-bottom:14px; line-height:1.75;">Build a one-page site. Put Clare's tagline, a photo of what the templates look like, three pricing options ($15, $20, $25 per month), and an email capture button. Don't build the product yet. Spend $200 on Facebook ads targeting family daycare educators in Australia.</p>
+      <div style="font-size:12px;font-family:'Nunito',sans-serif;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">What you're looking for</div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">50+ email signups from the $200 spend<div class="cl-sub">Cost per signup under $5 is a solid signal. Above $10, rethink the messaging.</div></div></div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">A clear preference toward one of the three price points</div></div>
+    </div>
+  </div>
+
+  <!-- Test 4 -->
+  <div class="card mb8" style="padding:0; overflow:hidden;">
+    <div style="background:var(--bg); padding:14px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);color:white;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+      <div style="flex:1;">
+        <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:var(--teal-dk);">Interview ten educators about their planning routine</div>
+      </div>
+      <span style="font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;">Week 3-4 &nbsp;·&nbsp; Free</span>
+    </div>
+    <div style="padding:16px 20px;">
+      <p style="font-size:14px; margin-bottom:14px; line-height:1.75;">Find five educators who subscribe to Aussie Childcare Network and five who buy one-off templates from Etsy. Have a genuine conversation about their planning week. Ask: what does planning take you each week, what do you currently use, what frustrates you about it, would you pay a monthly subscription for well-designed Australian planning templates, and what would make you cancel?</p>
+      <div style="font-size:12px;font-family:'Nunito',sans-serif;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">What you're looking for</div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">Real planning frustrations that aren't currently being solved</div></div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">At least 8 out of 10 saying they'd subscribe at the proposed price</div></div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">A clear picture of what would keep them subscribed beyond month one</div></div>
+    </div>
+  </div>
+
+  <!-- Test 5 -->
+  <div class="card mb8" style="padding:0; overflow:hidden;">
+    <div style="background:var(--bg); padding:14px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);color:white;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>
+      <div style="flex:1;">
+        <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:var(--teal-dk);">Create a sample pack and share it with educators you know</div>
+      </div>
+      <span style="font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;">Week 4-5 &nbsp;·&nbsp; ~$0</span>
+    </div>
+    <div style="padding:16px 20px;">
+      <p style="font-size:14px; margin-bottom:14px; line-height:1.75;">Design 5 to 8 templates covering a week of planning: a weekly plan, two activity planners, a display label set, and an observation page. Share them with 10 to 15 educators you know personally, for free. Ask them to use them for one week and come back to you with honest feedback.</p>
+      <div style="font-size:12px;font-family:'Nunito',sans-serif;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">What you're looking for</div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">Strong positive response to the design and usability<div class="cl-sub">Not just "nice." Specifically: "I used this and it saved me time."</div></div></div>
+      <div class="cl-item" onclick="check(this,'v')" data-group="v"><div class="cl-box"><span class="cl-check">✓</span></div><div class="cl-text">At least 8 out of 10 saying they'd pay for a full library of these</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="g2">
+    <div class="card card-sage">
+      <h3 style="color:#2A5A18; margin-bottom:10px;">Keep going if...</h3>
+      <p style="font-size:13px; color:#2A5A18; line-height:1.7;">Strong Facebook response. Real gaps visible in competitor templates. 50+ landing page signups. 8/10 interviewees would subscribe. Educators use the sample pack and ask for more.</p>
+    </div>
+    <div class="card" style="background:var(--red-lt); border-color:#F0C0C0;">
+      <h3 style="color:#A02020; margin-bottom:10px;">Rethink if...</h3>
+      <p style="font-size:13px; color:#A02020; line-height:1.7;">Weak Facebook response. Competitor templates are already excellent. Landing page signups cost more than $10 each. Fewer than half the interviewees would pay. Nobody uses the sample pack or asks about more.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     DECISIONS
+════════════════════════════════════════ -->
+<div class="panel" id="questions">
+<div class="page">
+
+  <div class="label">Before You Launch</div>
+  <h1>Key decisions to work through</h1>
+  <p class="intro">These are the questions that need a real answer before the first template goes on sale. Click each one to see why it matters and what to do about it. They're organised roughly in the order they need to be tackled.</p>
+
+  <div class="cl-group">
+    <div class="cl-group-title">Research first</div>
+
+    <div class="rec-item" id="r1">
+      <div class="rec-head" onclick="toggleRec('r1')">
+        <div class="rec-num">1</div>
+        <div class="rec-q">Have you actually used Aussie Childcare Network and Starskills?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>Not browsed their website. Actually subscribed, downloaded their templates, and spent time with their products. The whole competitive argument depends on understanding where they fall short. There's no shortcut to this.</p>
+        <div class="rec-ans">Action: Subscribe to both for one month (~$50 total). Document every template they offer. Note the gaps. This is the most important research step before building anything.</div>
+      </div>
+    </div>
+
+    <div class="rec-item" id="r2">
+      <div class="rec-head" onclick="toggleRec('r2')">
+        <div class="rec-num">2</div>
+        <div class="rec-q">Have you spoken to at least ten family daycare educators about their planning?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>Not pitched to. Actually listened to. The goal is to hear them describe their planning week in their own words, find out what they currently use, and understand what a better solution looks like to them. The templates have to solve their actual problem, not the assumed version of it.</p>
+        <div class="rec-ans">Action: Find educators through FDC Facebook groups or your existing network. Have a genuine conversation. Don't mention what you're building until after you've heard them out.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-group">
+    <div class="cl-group-title">Product design</div>
+
+    <div class="rec-item" id="r3">
+      <div class="rec-head" onclick="toggleRec('r3')">
+        <div class="rec-num">3</div>
+        <div class="rec-q">What does the first template pack actually contain?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>The launch pack needs to feel complete, not like a teaser. Educators should be able to open it and plan an entire week immediately. What's included, what format (PDF, Canva, Word), what age groups, and what EYLF outcomes does it cover?</p>
+        <div class="rec-ans">Recommendation: Aim for a pack that covers a full week: weekly plan, 3 to 4 activity planners, an observation page, and a display label set. Canva editable so educators can personalise it.</div>
+      </div>
+    </div>
+
+    <div class="rec-item" id="r4">
+      <div class="rec-head" onclick="toggleRec('r4')">
+        <div class="rec-num">4</div>
+        <div class="rec-q">How do you stop people downloading everything and cancelling?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>Template subscriptions have a real churn problem. Someone subscribes for $20, downloads the whole library, and cancels before month two. This has to be thought through before opening subscriptions.</p>
+        <div class="rec-ans">Options: Release content progressively so older subscribers access more. Use seasonal packs (Term 3 templates only land in Term 3). Add a monthly live planning session that can't be downloaded. Annual pricing reduces impulse cancellations.</div>
+      </div>
+    </div>
+
+    <div class="rec-item" id="r5">
+      <div class="rec-head" onclick="toggleRec('r5')">
+        <div class="rec-num">5</div>
+        <div class="rec-q">Is every template checked against EYLF v2.0?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>EYLF v2.0 came out in 2022 and updated some language and outcomes. Any template referencing the old framework language is out of date. If an educator spots outdated outcomes during an assessment visit, it reflects badly on the product and on them.</p>
+        <div class="rec-ans">Action: Before publishing anything, check every outcome reference against the current ACECQA EYLF v2.0 document. Keep a checklist. Review again whenever the NQS is updated.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-group">
+    <div class="cl-group-title">Business setup</div>
+
+    <div class="rec-item" id="r6">
+      <div class="rec-head" onclick="toggleRec('r6')">
+        <div class="rec-num">6</div>
+        <div class="rec-q">Is the business registered in Australia?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>An ABN, a business bank account, and GST registration (required once turnover passes $75,000 per year) all need to be in place before taking any payments. It takes a few hours and costs under $100.</p>
+        <div class="rec-ans">Action: Register ABN through abr.gov.au. Register business name through asic.gov.au (~$39 per year). Open a separate business bank account. Done.</div>
+      </div>
+    </div>
+
+    <div class="rec-item" id="r7">
+      <div class="rec-head" onclick="toggleRec('r7')">
+        <div class="rec-num">7</div>
+        <div class="rec-q">Are the subscriber terms sorted before anyone pays?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>Australian consumer law has specific requirements around subscriptions, including cancellation rights and refund policies. Terms and conditions and a privacy policy both need to be in place before the first payment is taken. This isn't optional.</p>
+        <div class="rec-ans">Recommendation: Use a subscription terms template as a starting point and have it reviewed by a local lawyer. Budget $300 to $500 for this. It's a one-time cost that protects the business long term.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cl-group">
+    <div class="cl-group-title">Reaching people</div>
+
+    <div class="rec-item" id="r8">
+      <div class="rec-head" onclick="toggleRec('r8')">
+        <div class="rec-num">8</div>
+        <div class="rec-q">Is there an email list being built right now?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>The strongest launch is to a warm audience. An email list of 500 people who already know what the product is means day one isn't starting from zero. Every month before launch is time to build that list.</p>
+        <div class="rec-ans">Action: Set up a free Mailchimp or Kit account. Add a simple landing page with an email signup. Start posting useful planning content in FDC Facebook groups to build awareness. Collect emails before the product is ready.</div>
+      </div>
+    </div>
+
+    <div class="rec-item" id="r9">
+      <div class="rec-head" onclick="toggleRec('r9')">
+        <div class="rec-num">9</div>
+        <div class="rec-q">Has anyone talked to Family Day Care Australia?</div>
+        <span class="rec-arrow">&#9660;</span>
+      </div>
+      <div class="rec-body">
+        <p>FDCA represents all 18,000 family daycare educators nationally. A partnership or endorsement from them would reach the entire target market in one step. That's worth more than months of paid advertising.</p>
+        <div class="rec-ans">Action: Send FDCA a short introduction email. Explain what the product is and propose a member discount arrangement. Start this conversation well before launch, not on launch day.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     LAUNCH PLAN
+════════════════════════════════════════ -->
+<div class="panel" id="launch">
+<div class="page">
+
+  <div class="label">Launch Plan</div>
+  <h1>72 days to 1 July 2026</h1>
+  <p class="intro">One task at a time, in order. Don't skip ahead. The goal on 1 July is 20 people paying for something they actually use and come back for in month two. Tick each task off as it's done.</p>
+
+  <div class="progress-wrap" id="launch-progress">
+    <div class="progress-label">
+      <span>Progress to launch</span>
+      <span id="launch-count">0 of 32</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="launch-fill"></div></div>
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="cl-group">
+    <div class="cl-group-title">Phase 1 — Get the business set up (Week 1)</div>
+
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Register an ABN through the Australian Business Register<div class="cl-sub">Free. Takes about 20 minutes at abr.gov.au.</div></div>
+      <span class="cl-tag">abr.gov.au</span>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Check and register the business name<div class="cl-sub">Search ASIC's register. Register if available (~$39 for 1 year) at asic.gov.au.</div></div>
+      <span class="cl-tag">asic.gov.au</span>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Open a dedicated business bank account<div class="cl-sub">Keep business and personal finances separate from the start.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Register a .com.au domain name<div class="cl-sub">Crazy Domains or VentraIP. Costs ~$20 to $30 per year.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Set up a Stripe account for taking payments<div class="cl-sub">Free to set up. ~1.7% per transaction for Australian cards.</div></div>
+      <span class="cl-tag">stripe.com</span>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Set up an email marketing account<div class="cl-sub">Mailchimp or Kit (formerly ConvertKit). Both have free tiers to start.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Get subscriber terms and a privacy policy reviewed by a lawyer<div class="cl-sub">Budget $300 to $500. Use a template as a starting point.</div></div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="cl-group">
+    <div class="cl-group-title">Phase 2 — Get visible (Weeks 1-2)</div>
+
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Finalise brand name and visual look<div class="cl-sub">Logo, colours, fonts. Canva works fine at this stage.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Create Instagram and Facebook pages for the business<div class="cl-sub">These will be the main channels for reaching educators.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Build a simple landing page with an email signup<div class="cl-sub">Headline, what it is, who it's for, email field. Squarespace, Wix, or Carrd all work.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Start posting in family daycare Facebook groups<div class="cl-sub">Share planning tips and helpful content first. Don't sell yet. Just be useful.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Send a short introduction email to Family Day Care Australia<div class="cl-sub">Ask about member partnership opportunities. Do this early, not on launch day.</div></div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="cl-group">
+    <div class="cl-group-title">Phase 3 — Test the idea (Weeks 1-4, running alongside setup)</div>
+
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Post the planning question in Facebook groups (Validation Test 1)<div class="cl-sub">See the Validation tab for the exact post.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Subscribe to Aussie Childcare Network for one month (Validation Test 2)<div class="cl-sub">Download everything. Note what's good, what's not, and what's missing.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Subscribe to Starskills for one month (Validation Test 2)<div class="cl-sub">Specifically look at template design quality and EYLF alignment.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Run the landing page Facebook ad test (Validation Test 3)<div class="cl-sub">$200 spend. See the Validation tab for what to look for.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Interview ten family daycare educators (Validation Test 4)<div class="cl-sub">5 using Aussie Childcare Network, 5 buying from Etsy.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Review all validation results and make the go/no-go call<div class="cl-sub">Check against the signals on the Validation tab. Be honest.</div></div>
+    </div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="cl-group">
+    <div class="cl-group-title">Phase 4 — Build the first template pack (Weeks 5-8, if validation passes)</div>
+
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Choose the theme and age group for the first pack<div class="cl-sub">Base this on what educators said they need most from the interviews.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Design the weekly planning template<div class="cl-sub">Clean, beautiful, editable in Canva. Room for theme, learning focus, activities, and EYLF links.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Design the activity planner templates (3 to 4 variations)<div class="cl-sub">Indoor, outdoor, group, individual. Each with space for EYLF outcome references.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Design the topic calendar and room display labels<div class="cl-sub">Print-ready. Beautiful enough to go on a wall and stay there.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Design the observation record and reflection journal pages</div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Check every template against EYLF v2.0<div class="cl-sub">Every outcome reference must match current language. No exceptions.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Share the sample pack with 10 to 15 educators for honest feedback (Validation Test 5)<div class="cl-sub">Free access in exchange for a real conversation about what worked.</div></div>
+    </div>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="cl-group">
+    <div class="cl-group-title">Phase 5 — Refine and get ready (Weeks 8-10)</div>
+
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Collect and review all feedback from the sample pack group</div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Update the templates based on what they told you<div class="cl-sub">Focus on usability and design. Fix anything that was confusing or hard to use.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Build the subscriber delivery system<div class="cl-sub">A simple members page or email-based delivery. Keep it simple until you have 100+ subscribers.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Plan the first three months of content so you're never scrambling<div class="cl-sub">What are the next two packs after the launch pack? Have them at least 50% done before you open subscriptions.</div></div>
+    </div>
+  </div>
+
+  <!-- Phase 6 -->
+  <div class="cl-group">
+    <div class="cl-group-title">Phase 6 — Open to subscribers (Weeks 10-12, target date 1 July 2026)</div>
+
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Set the founding member price and open Stripe subscriptions<div class="cl-sub">Suggested founding price: $15 to $20 per month. A lower launch price rewards early subscribers and reduces the barrier to trying it.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Launch to email list, Facebook groups, and Instagram<div class="cl-sub">Ask the sample pack group to share. They're your best advocates.</div></div>
+    </div>
+    <div class="cl-item" onclick="check(this,'l')" data-group="l">
+      <div class="cl-box"><span class="cl-check">✓</span></div>
+      <div class="cl-text">Reach 20 paying subscribers<div class="cl-sub">This is the only signal that matters at this stage. If people pay and come back for month two, keep going.</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="g2">
+    <div class="card card-sage">
+      <h3 style="color:#2A5A18;">Success on 1 July</h3>
+      <p style="font-size:14px; line-height:1.75;">20 paying subscribers. Someone comes back for month two. That's $300 to $400 in monthly recurring revenue. Not a business yet, but proof the idea works.</p>
+    </div>
+    <div class="card card-orange">
+      <h3>Leave for later</h3>
+      <p style="font-size:14px; line-height:1.75;">Custom app, members portal, video content, course certificates, brand refresh. None of this is needed before launch. Build it only after the concept is proven.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<script>
+// Tab switching
+function go(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo(0, 0);
+}
+
+// Accordion
+function tog(el) { el.classList.toggle('open'); }
+
+// Checkbox items
+function check(el, group) {
+  el.classList.toggle('done');
+  updateProgress(group);
+}
+
+function updateProgress(group) {
+  var g = group;
+  var items = document.querySelectorAll('[data-group="' + g + '"]');
+  var done  = document.querySelectorAll('[data-group="' + g + '"].done');
+  var total = items.length;
+  var count = done.length;
+  var pct   = total > 0 ? (count / total) * 100 : 0;
+  if (g === 'v') {
+    var fill  = document.getElementById('val-fill');
+    var label = document.getElementById('val-count');
+    if (fill)  fill.style.width = pct + '%';
+    if (label) label.textContent = count + ' of ' + total;
+  }
+  if (g === 'l') {
+    var fill2  = document.getElementById('launch-fill');
+    var label2 = document.getElementById('launch-count');
+    if (fill2)  fill2.style.width = pct + '%';
+    if (label2) label2.textContent = count + ' of ' + total;
+  }
+}
+
+// Set initial counts on load
+window.addEventListener('DOMContentLoaded', function() {
+  var vTotal = document.querySelectorAll('[data-group="v"]').length;
+  var lTotal = document.querySelectorAll('[data-group="l"]').length;
+  var vLabel = document.getElementById('val-count');
+  var lLabel = document.getElementById('launch-count');
+  if (vLabel) vLabel.textContent = '0 of ' + vTotal;
+  if (lLabel) lLabel.textContent = '0 of ' + lTotal;
+});
+
+// Decisions expand/collapse
+function toggleRec(id) {
+  var el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
