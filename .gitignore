@@ -5,3 +5,9 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+
+# Clare's voice memos — keep local only
+*.mp4
+
+# Private notes with "do not send" sections
+/clare_feedback_notes.md
