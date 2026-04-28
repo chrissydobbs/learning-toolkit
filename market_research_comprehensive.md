@@ -431,7 +431,7 @@ Month 12: ?
 
 **EYLF:**
 - Released: 2009
-- Updated: 2022 (v2.0) — 13 years later
+- Updated: 2022 (v2.0), 13 years later
 - Next update: Unknown (likely 2030+)
 
 **NQS:**

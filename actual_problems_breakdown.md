@@ -126,7 +126,7 @@ Looking at the deck:
 - Monthly updates
 
 **Value proposition:**
-"Not just templates — a system that supports, not drains."
+"Not just templates, a system that supports, not drains."
 "Helps educators understand WHY, not just WHAT."
 
 ---
